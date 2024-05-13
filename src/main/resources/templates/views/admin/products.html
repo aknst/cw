@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+<head>
+  <meta charset="UTF-8">
+  <title>Категории товаров</title>
+  <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+  />
+</head>
+<body>
+<div th:replace="fragments/adminHeader.html :: header"></div>
+<div class="container py-4">
+  <a th:href="@{/admin/products/add}" class="btn btn-primary">Добавить продукт</a>
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Наименование</th>
+      <th scope="col">Категория</th>
+      <th scope="col">Обложка</th>
+      <th scope="col">Удалить</th>
+      <th scope="col">Обновить</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="product, iStat : ${products}">
+      <th th:text="${product.id}">1</th>
+      <td th:text="${product.name}">Product_Name</td>
+      <td th:text="${product.category.name}">Products_Category_Type</td>
+      <td><img src="" height="100px" width="100px" th:src="@{${'/productImages/' + product.imageName}}">
+      </td>
+
+      <td><a href="" th:href="@{/admin/product/delete/{id}(id=${product.id})}"
+             class="btn btn-danger">Удалить</a></td>
+      <td><a href="" th:href="@{/admin/product/update/{id}(id=${product.id})}"
+             class="btn btn-warning">Обновить</a></td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>
+<div th:replace="fragments/footer.html :: footer"></div>
+</body>
+</html>

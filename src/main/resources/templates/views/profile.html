@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <title>Корзина</title>
+</head>
+<body>
+<div th:replace="fragments/header.html :: header"></div>
+<main>
+  <div class="container">
+    <section class="mt-5 mb-4">
+      <!-- Ваш код для отображения заказов и товаров -->
+      <div class="row">
+        <div class="col-lg-8">
+          <!-- Карточка заказов -->
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="mb-4">Ваши заказы:</h5>
+              <div class="list-group">
+                <th:block th:each="order : ${orders}">
+                  <a class="list-group-item list-group-item-action">
+                    <div class="d-flex w-100 justify-content-between">
+                      <h5 class="mb-2">Заказ №<span th:text="${order.id}"></span></h5>
+                      <small th:text="${#dates.format(order.orderDate, 'dd MMM yyyy HH:mm')}"></small>
+                    </div>
+                    <p class="mb-3">Статус: <span th:text="${order.status}"></span></p>
+                    <div class="list-group mb-3">
+                      <th:block th:each="orderItem : ${order.orderItems}">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                          <span th:text="${orderItem.product.name + ' по цене ' + orderItem.product.price + ' ₽'}"></span>
+                          <span class="badge text-bg-primary rounded-pill" th:text="${orderItem.quantity + ' шт.'}"></span>
+                        </li>
+                      </th:block>
+                    </div>
+                    <p class="mb-1"><strong>Сумма: <span th:text="${order.totalPrice}"></span> ₽</strong></p>
+                  </a>
+                </th:block>
+              </div>
+              <hr>
+              <p class="text-primary mb-0"><i class="bi bi-info-circle"></i> Статусы заказов могут меняться</p>
+            </div>
+          </div>
+        </div>
+        <!-- Карточка профиля -->
+        <div class="col-lg-4">
+          <div class="card mb-4">
+            <div class="card-body">
+              <h5 class="mb-3">Профиль</h5>
+              <!-- Выводим имя и почту пользователя -->
+              <div class="form-floating mb-3">
+                <input type="email" th:value="${user.name}" class="form-control" id="floatingName" placeholder="ФИО" disabled>
+                <label for="floatingName">Ваше имя</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" th:value="${user.email}" class="form-control" id="floatingEmail" placeholder="mail@mail.ru" disabled>
+                <label for="floatingEmail">Ваша почта</label>
+              </div>
+              <hr>
+              <a th:href="@{/logout}" class="btn btn-primary w-100">Выйти</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <!--Grid row-->
+
+    </section>
+    <!--Section: Block Content-->
+  </div>
+</main>
+<!--Main layout-->
+
+<div th:replace="fragments/footer.html :: footer"></div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

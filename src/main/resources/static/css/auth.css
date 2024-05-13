@@ -1,0 +1,8 @@
+html, body {
+  height: 100%;
+}
+
+.form-signin {
+  max-width: 600px;
+  padding: 1rem;
+}

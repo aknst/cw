@@ -1,0 +1,61 @@
+.product__details {
+  margin-top: auto;
+}
+
+.product_image {
+  --height: 260px;
+  height: var(--height);
+}
+
+.product_image img {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.we-help-section {
+    }
+    .we-help-section .imgs-grid {
+      display: -ms-grid;
+      display: grid;
+      -ms-grid-columns: (1fr)[27];
+      grid-template-columns: repeat(27, 1fr);
+      position: relative; }
+      .we-help-section .imgs-grid:before {
+        position: absolute;
+        content: "";
+        width: 255px;
+        height: 217px;
+        background-image: url("https://themewagon.github.io/furni/images/dots-green.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        transform: translate(-20%, -20%);
+        z-index: -1; }
+      .we-help-section .imgs-grid .grid {
+        position: relative; }
+        .we-help-section .imgs-grid .grid img {
+          border-radius: 20px;
+          max-width: 100%; }
+        .we-help-section .imgs-grid .grid.grid-1 {
+          -ms-grid-column: 1;
+          -ms-grid-column-span: 18;
+          grid-column: 1 / span 18;
+          -ms-grid-row: 1;
+          -ms-grid-row-span: 27;
+          grid-row: 1 / span 27; }
+        .we-help-section .imgs-grid .grid.grid-2 {
+          -ms-grid-column: 19;
+          -ms-grid-column-span: 27;
+          grid-column: 19 / span 27;
+          -ms-grid-row: 1;
+          -ms-grid-row-span: 5;
+          grid-row: 1 / span 5;
+          padding-left: 20px; }
+        .we-help-section .imgs-grid .grid.grid-3 {
+          -ms-grid-column: 14;
+          -ms-grid-column-span: 16;
+          grid-column: 14 / span 16;
+          -ms-grid-row: 6;
+          -ms-grid-row-span: 27;
+          grid-row: 6 / span 27;
+          padding-top: 20px; }
